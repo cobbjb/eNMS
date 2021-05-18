@@ -10,6 +10,7 @@ from multiprocessing.pool import ThreadPool
 from napalm import get_network_driver
 from ncclient import manager
 from netmiko import ConnectHandler
+from ncclient import manager
 from os import getenv
 from paramiko import RSAKey, SFTPClient
 from re import compile, search
@@ -1326,7 +1327,11 @@ class Run(AbstractBase):
         if device.netconf_driver is not None:
             driver_name = device.netconf_driver
         else:
+<<<<<<< HEAD
             driver_name = "default"
+=======
+            driver_name = 'default'
+>>>>>>> NETCONF service based on ncclient
         device_params = {"name": driver_name}
         ncclient_connection = manager.connect(
             host=device.ip_address,
@@ -1334,8 +1339,13 @@ class Run(AbstractBase):
             hostkey_verify=False,
             look_for_keys=False,
             device_params=device_params,
+<<<<<<< HEAD
             username=credentials["username"],
             password=credentials["password"],
+=======
+            username=credentials['username'],
+            password=credentials['password']
+>>>>>>> NETCONF service based on ncclient
         )
         app.connections_cache["ncclient"][self.parent_runtime][
             device.name
